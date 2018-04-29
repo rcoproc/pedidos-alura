@@ -1,0 +1,65 @@
+﻿@{ 
+    ViewData["Title"] = "Carrinho";
+}
+
+<h3>Meu Carrinho</h3>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-6">
+        Item
+      </div>
+      <div class="col-md-2">
+        Preço Unit.
+      </div>
+      <div class="col-md-2">
+        Quantidade
+      </div>
+      <div class="col-md-2">
+        <span class="pull-right">
+          Subtotal
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-body">
+
+    @foreach (ItemPedido item in Model)
+    {
+      <div class="row">
+        <div class="col-md-3">
+          <img src="~/images/Pedido/small_@(item.Id).jpg" />
+        </div>
+        <div class="col-md-3">@item.Produto.Nome</div>
+        <div class="col-md-2">@item.PrecoUnitario</div>
+        <div class="col-md-2">@item.Quantidade</div>
+        <div class="col-md-2">
+          <span class="pull-right">R$ @item.Subtotal</span>    
+        </div>
+    </div>
+    }
+
+  </div>
+
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-md-10">
+        Total
+      </div>
+      <div class="col-md-2">
+        <span class="pull-right"> R$ 210,00 </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="pull-right">
+      <a asp-action="resumo"
+         class="btn btn-success">Finalizar Pedido</a>
+    </div>
+  </div>
+</div>
