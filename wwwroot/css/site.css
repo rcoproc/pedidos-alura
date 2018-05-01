@@ -56,3 +56,8 @@
   width: 215px;
   height: 55px;
 }
+
+.row_align_center {
+  display: flex;
+  align-items: center;
+}

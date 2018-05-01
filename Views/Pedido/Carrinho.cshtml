@@ -2,6 +2,7 @@
     ViewData["Title"] = "Carrinho";
 }
 
+@model CasaDoCodigo.Models.ViewModels.CarrinhoViewModel
 <h3>Meu Carrinho</h3>
 
 <div class="panel panel-default">
@@ -10,10 +11,10 @@
       <div class="col-md-6">
         Item
       </div>
-      <div class="col-md-2">
+      <div class="col-md-2 text-center">
         Preço Unit.
       </div>
-      <div class="col-md-2">
+      <div class="col-md-2 text-center">
         Quantidade
       </div>
       <div class="col-md-2">
@@ -26,15 +27,15 @@
 
   <div class="panel-body">
 
-    @foreach (ItemPedido item in Model)
+    @foreach (ItemPedido item in Model.Itens)
     {
-      <div class="row">
+      <div class="row row_align_center">
         <div class="col-md-3">
           <img src="~/images/Pedido/small_@(item.Id).jpg" />
         </div>
         <div class="col-md-3">@item.Produto.Nome</div>
-        <div class="col-md-2">@item.PrecoUnitario</div>
-        <div class="col-md-2">@item.Quantidade</div>
+        <div class="col-md-2 text-center">@item.PrecoUnitario</div>
+        <div class="col-md-2 text-center">@item.Quantidade</div>
         <div class="col-md-2">
           <span class="pull-right">R$ @item.Subtotal</span>    
         </div>
@@ -46,10 +47,10 @@
   <div class="panel-footer">
     <div class="row">
       <div class="col-md-10">
-        Total
+        Total: @Model.Itens.Count Itens
       </div>
       <div class="col-md-2">
-        <span class="pull-right"> R$ 210,00 </span>
+        <span class="pull-right"> R$ @Model.Total </span>
       </div>
     </div>
   </div>
