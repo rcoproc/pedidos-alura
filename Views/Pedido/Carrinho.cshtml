@@ -29,15 +29,33 @@
 
     @foreach (ItemPedido item in Model.Itens)
     {
-      <div class="row row_align_center">
+      <div class="row row_align_center" item-id="@item.Id">
         <div class="col-md-3">
-          <img src="~/images/Pedido/small_@(item.Id).jpg" />
+          <img src="~/images/Pedido/small_@(item.Produto.Id).jpg" />
         </div>
         <div class="col-md-3">@item.Produto.Nome</div>
         <div class="col-md-2 text-center">@item.PrecoUnitario</div>
-        <div class="col-md-2 text-center">@item.Quantidade</div>
+        <div class="col-md-2 text-center">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-default" onclick="carrinho.clickDecremento(this)">
+                <span class="glyphicon-minus"></span>
+              </button>
+            </span>
+
+            <input type="text" value="@item.Quantidade" class="form-control text-center" onblur="carrinho.updateQuantidade(this)"/>
+            
+            <span class="input-group-btn">
+              <button class="btn btn-default" onclick="carrinho.clickIncremento(this)">
+                <span class="glyphicon-plus"></span>
+              </button>
+            </span>
+          </div>
+        </div>
         <div class="col-md-2">
-          <span class="pull-right">R$ @item.Subtotal</span>    
+          R$ <span class="pull-right" subtotal>
+              @item.Subtotal
+             </span>    
         </div>
     </div>
     }
@@ -47,10 +65,11 @@
   <div class="panel-footer">
     <div class="row">
       <div class="col-md-10">
-        Total: @Model.Itens.Count Itens
+        <span numero-itens>
+        Total: @Model.Itens.Count </span>
       </div>
       <div class="col-md-2">
-        <span class="pull-right"> R$ @Model.Total </span>
+        R$ <span class="pull-right" total> @Model.Total </span>
       </div>
     </div>
   </div>
@@ -64,3 +83,8 @@
     </div>
   </div>
 </div>
+
+@section Scripts 
+{
+  <script src="~/js/Carrinho.js"></script>
+}
